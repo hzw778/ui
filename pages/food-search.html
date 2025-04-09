@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 食物搜索</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        
+        
+        .category-selector {
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .category-selector::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 搜索框 -->
+        <div class="px-4 pb-2 pt-3 bg-white sticky top-0 shadow-sm">
+            <div class="relative">
+                <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                <input type="search" placeholder="搜索食物、菜品、品牌..." class="w-full pl-10 pr-3 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-1 focus:ring-green-500">
+                <div class="absolute right-0 inset-y-0 flex items-center">
+                    <button class="w-10 h-10 flex items-center justify-center text-green-500">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 分类选择器 -->
+        <div class="px-4 py-3 bg-white border-b border-gray-200">
+            <div class="category-selector flex space-x-3">
+                <div class="px-3 py-1.5 bg-green-500 text-white text-sm rounded-full whitespace-nowrap">
+                    全部
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    米面主食
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    肉蛋奶类
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    蔬菜水果
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    零食饮料
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    调味品
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI扫描提示 -->
+        <div class="m-4">
+            <div class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl p-4 text-white flex items-center shadow-lg">
+                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-camera text-white"></i>
+                </div>
+                <div class="flex-1">
+                    <div class="font-bold mb-1">AI识别扫描</div>
+                    <div class="text-xs text-white/80">拍摄或上传食物照片，AI自动识别并计算营养</div>
+                </div>
+                <i class="fas fa-chevron-right text-white/60"></i>
+            </div>
+        </div>
+        
+        <!-- 常用食物 -->
+        <div class="px-4 mb-5">
+            <h3 class="font-medium mb-3">常用食物</h3>
+            <div class="grid grid-cols-2 gap-3">
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="全麦面包" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <div class="font-medium text-sm">全麦面包</div>
+                        <div class="flex justify-between items-center mt-1">
+                            <div class="text-xs text-gray-500">75 千卡/片</div>
+                            <button class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1518569656558-1f25e69d93d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="煎蛋" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <div class="font-medium text-sm">煎蛋</div>
+                        <div class="flex justify-between items-center mt-1">
+                            <div class="text-xs text-gray-500">87 千卡/个</div>
+                            <button class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="香蕉" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <div class="font-medium text-sm">香蕉</div>
+                        <div class="flex justify-between items-center mt-1">
+                            <div class="text-xs text-gray-500">105 千卡/根</div>
+                            <button class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="h-24 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="原味酸奶" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-2">
+                        <div class="font-medium text-sm">原味酸奶</div>
+                        <div class="flex justify-between items-center mt-1">
+                            <div class="text-xs text-gray-500">120 千卡/杯</div>
+                            <button class="w-6 h-6 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                                <i class="fas fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 食物列表 -->
+        <div class="px-4">
+            <h3 class="font-medium mb-3">所有食物</h3>
+            <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                <!-- 食物项目 -->
+                <div class="flex items-center p-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="糙米饭" class="w-12 h-12 rounded-lg object-cover mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium">糙米饭</div>
+                        <div class="text-xs text-gray-500">110 千卡/100g</div>
+                    </div>
+                    <button class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <i class="fas fa-plus text-sm"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center p-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="鸡胸肉" class="w-12 h-12 rounded-lg object-cover mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium">鸡胸肉</div>
+                        <div class="text-xs text-gray-500">165 千卡/100g</div>
+                    </div>
+                    <button class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <i class="fas fa-plus text-sm"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center p-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="西兰花" class="w-12 h-12 rounded-lg object-cover mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium">西兰花</div>
+                        <div class="text-xs text-gray-500">30 千卡/100g</div>
+                    </div>
+                    <button class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <i class="fas fa-plus text-sm"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center p-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="三文鱼" class="w-12 h-12 rounded-lg object-cover mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium">三文鱼</div>
+                        <div class="text-xs text-gray-500">206 千卡/100g</div>
+                    </div>
+                    <button class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <i class="fas fa-plus text-sm"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center p-3 border-b border-gray-100">
+                    <img src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="藜麦" class="w-12 h-12 rounded-lg object-cover mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium">藜麦</div>
+                        <div class="text-xs text-gray-500">120 千卡/100g</div>
+                    </div>
+                    <button class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <i class="fas fa-plus text-sm"></i>
+                    </button>
+                </div>
+                
+                <div class="flex items-center p-3">
+                    <img src="https://images.unsplash.com/photo-1579636849345-c40e15d42c6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="牛油果" class="w-12 h-12 rounded-lg object-cover mr-3">
+                    <div class="flex-1">
+                        <div class="font-medium">牛油果</div>
+                        <div class="text-xs text-gray-500">160 千卡/100g</div>
+                    </div>
+                    <button class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                        <i class="fas fa-plus text-sm"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 添加自定义食物按钮 -->
+            <div class="mt-4 mb-6">
+                <button class="w-full py-3 border border-dashed border-green-500 rounded-xl text-green-500 flex items-center justify-center">
+                    <i class="fas fa-plus-circle mr-2"></i> 添加自定义食物
+                </button>
+            </div>
+        </div>
+        
+        <!-- AI食物信息推荐 -->
+        <div class="px-4 mb-6">
+            <div id="ai-food-info"></div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('添加食物', true);
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('');
+            
+            // 插入AI食物信息
+            document.getElementById('ai-food-info').innerHTML = createAiGradient('AI食物营养分析', '西兰花富含维生素C和纤维素，是减脂期间理想的低热量食物。每100g仅含30千卡，同时提供2.8g蛋白质。');
+        });
+    </script>
+</body>
+</html>

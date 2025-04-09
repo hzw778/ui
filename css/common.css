@@ -1,0 +1,51 @@
+/* =====================================================
+ * 共用的基础样式，解决双滚动条问题
+ * 警告: 不要在任何页面样式中重复定义这些样式
+ * 否则会导致双滚动条问题!
+ * ===================================================== */
+body {
+    max-width: 375px;
+    margin: 0 auto;
+    height: 100vh;
+    background-color: #f8f9fa;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden; /* 防止body出现滚动条 */
+}
+
+.content {
+    padding-bottom: 70px;
+    padding-top: 48px;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* 增强iOS滚动体验 */
+}
+
+/* 底部导航和顶部导航的通用样式 */
+.app-header {
+    position: fixed;
+    top: 30px; /* 状态栏高度 */
+    left: 0;
+    right: 0;
+    height: 48px;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background-color: white;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+} 

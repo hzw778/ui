@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - AI营养师</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .chat-container {
+            height: calc(100% - 70px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            padding-bottom: 120px; /* 增加底部填充，为输入框留出空间 */
+        }
+        .message {
+            margin-bottom: 12px;
+            max-width: 80%;
+        }
+        .user-message {
+            align-self: flex-end;
+            background-color: #4ade80;
+            color: white;
+            border-radius: 18px 18px 4px 18px;
+            padding: 12px 16px;
+        }
+        .ai-message {
+            align-self: flex-start;
+            background-color: white;
+            border-radius: 18px 18px 18px 4px;
+            padding: 12px 16px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .chat-input {
+            position: fixed;
+            bottom: 80px; /* 增加与底部导航栏的距离 */
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 375px;
+            padding: 10px 16px 20px 16px; /* 底部增加安全区域 */
+            background-color: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+        .ai-feature-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .chat-input input {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.2s ease;
+        }
+        .chat-input input:focus {
+            box-shadow: 0 2px 12px rgba(74, 222, 128, 0.2);
+        }
+        .chat-input .send-btn {
+            transition: all 0.2s ease;
+        }
+        .chat-input .send-btn:hover {
+            transform: scale(1.05);
+        }
+        .chat-input .send-btn:active {
+            transform: scale(0.95);
+        }
+        .ai-avatar {
+            width: 24px;
+            height: 24px;
+            background-color: #8b5cf6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 聊天界面 -->
+        <div class="chat-container">
+            <!-- AI欢迎消息 -->
+            <div class="message ai-message">
+                <div class="flex items-center mb-2">
+                    <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs mr-2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="font-medium text-sm">轻养AI营养师</div>
+                </div>
+                <div>你好，我是你的AI营养助手！根据你的健康数据，我可以为你提供个性化的营养建议。有什么我可以帮助你的吗？</div>
+            </div>
+            
+            <!-- AI功能卡片 -->
+            <div class="message ai-message p-0 bg-transparent shadow-none">
+                <div class="grid grid-cols-2 gap-3 mt-2">
+                    <div class="ai-feature-card bg-gradient-to-br from-blue-500 to-blue-700 text-white p-3">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-utensils mr-2"></i>
+                            <span class="font-medium">膳食规划</span>
+                        </div>
+                        <p class="text-xs opacity-90">根据你的目标制定每日膳食计划</p>
+                    </div>
+                    
+                    <div class="ai-feature-card bg-gradient-to-br from-purple-500 to-purple-700 text-white p-3">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-search mr-2"></i>
+                            <span class="font-medium">食物分析</span>
+                        </div>
+                        <p class="text-xs opacity-90">分析食物的营养成分与热量</p>
+                    </div>
+                    
+                    <div class="ai-feature-card bg-gradient-to-br from-green-500 to-green-700 text-white p-3">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-apple-alt mr-2"></i>
+                            <span class="font-medium">健康饮食</span>
+                        </div>
+                        <p class="text-xs opacity-90">提供符合你需求的健康饮食建议</p>
+                    </div>
+                    
+                    <div class="ai-feature-card bg-gradient-to-br from-red-500 to-red-700 text-white p-3">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-question-circle mr-2"></i>
+                            <span class="font-medium">营养问答</span>
+                        </div>
+                        <p class="text-xs opacity-90">解答你关于营养与健康的问题</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 用户消息 -->
+            <div class="message user-message">
+                <div>我想知道我每天应该摄入多少蛋白质？</div>
+            </div>
+            
+            <!-- AI回复 -->
+            <div class="message ai-message">
+                <div class="flex items-center mb-2">
+                    <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs mr-2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="font-medium text-sm">轻养AI营养师</div>
+                </div>
+                <div class="mb-2">根据你的个人信息（身高168cm，体重58kg），推荐的每日蛋白质摄入量为：</div>
+                <div class="bg-blue-50 rounded-lg p-3 text-sm">
+                    <div class="font-medium mb-1">推荐蛋白质摄入：80-100克/天</div>
+                    <ul class="list-disc list-inside text-gray-600 space-y-1">
+                        <li>普通人群：每公斤体重0.8-1.0克蛋白质</li>
+                        <li>有氧运动者：每公斤体重1.2-1.4克蛋白质</li>
+                        <li>力量训练者：每公斤体重1.6-2.0克蛋白质</li>
+                    </ul>
+                </div>
+                <div class="mt-2">考虑到你的健康减脂目标，建议每天摄入85-95克优质蛋白质，这有助于保持肌肉量的同时促进脂肪燃烧。优质蛋白质来源包括鸡胸肉、鱼类、豆制品、蛋类等。</div>
+            </div>
+            
+            <!-- 用户消息 -->
+            <div class="message user-message">
+                <div>有什么适合晚餐的低卡高蛋白食谱推荐吗？</div>
+            </div>
+            
+            <!-- AI回复 -->
+            <div class="message ai-message">
+                <div class="flex items-center mb-2">
+                    <div class="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-white text-xs mr-2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="font-medium text-sm">轻养AI营养师</div>
+                </div>
+                <div class="mb-2">以下是几个适合晚餐的低卡高蛋白食谱推荐：</div>
+                
+                <div class="bg-white rounded-lg overflow-hidden shadow-sm mb-3">
+                    <div class="h-32 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80" alt="藜麦鸡胸沙拉" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-3">
+                        <div class="font-medium mb-1">烤鸡胸藜麦沙拉</div>
+                        <div class="flex justify-between text-sm">
+                            <span>320 千卡</span>
+                            <span>蛋白质 28g</span>
+                        </div>
+                        <div class="mt-2 flex space-x-2">
+                            <span class="text-xs px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full">高蛋白</span>
+                            <span class="text-xs px-2 py-0.5 bg-green-100 text-green-700 rounded-full">低碳水</span>
+                            <span class="text-xs px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full">高纤维</span>
+                        </div>
+                        <a href="recipe.html" class="block w-full mt-2 py-1.5 text-center text-xs text-green-500 border border-green-500 rounded-lg">查看食谱</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="mr-2 text-gray-400">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-1"></i>
+                        <span class="text-xs">提示：</span>
+                    </div>
+                    <div class="text-sm text-gray-500">晚餐选择低碳水高蛋白食物可以帮助你维持稳定血糖并促进夜间修复。</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 聊天输入框 -->
+        <div class="chat-input">
+            <div class="relative">
+                <input type="text" placeholder="输入你的问题..." class="w-full py-3.5 px-5 pr-24 bg-gray-50 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 focus:bg-white text-gray-700">
+                <div class="absolute right-2 top-1.5 flex space-x-2">
+                    <button class="w-9 h-9 flex items-center justify-center text-gray-400 hover:text-gray-600 transition">
+                        <i class="fas fa-image"></i>
+                    </button>
+                    <button class="send-btn w-9 h-9 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center text-white shadow-md">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('AI营养师', true);
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('');
+        });
+    </script>
+</body>
+</html> 

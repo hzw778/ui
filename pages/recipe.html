@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 食谱详情</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        
+        
+        .recipe-cover {
+            height: 220px;
+            position: relative;
+        }
+        .recipe-cover::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+        .recipe-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            color: white;
+            z-index: 10;
+        }
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 24px;
+            height: 24px;
+            background-color: #4ade80;
+            color: white;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 食谱封面 -->
+        <div class="recipe-cover">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="烤鸡胸藜麦沙拉" class="w-full h-full object-cover">
+            <div class="recipe-info">
+                <h1 class="text-xl font-bold mb-1">烤鸡胸藜麦沙拉</h1>
+                <div class="flex items-center mb-2">
+                    <div class="flex items-center mr-3">
+                        <i class="fas fa-fire text-xs mr-1"></i>
+                        <span class="text-sm">320 千卡</span>
+                    </div>
+                    <div class="flex items-center mr-3">
+                        <i class="fas fa-clock text-xs mr-1"></i>
+                        <span class="text-sm">25 分钟</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-signal text-xs mr-1"></i>
+                        <span class="text-sm">简单</span>
+                    </div>
+                </div>
+                <div class="flex space-x-2">
+                    <span class="text-xs px-2 py-0.5 bg-blue-500/30 rounded-full">高蛋白</span>
+                    <span class="text-xs px-2 py-0.5 bg-green-500/30 rounded-full">低碳水</span>
+                    <span class="text-xs px-2 py-0.5 bg-purple-500/30 rounded-full">高纤维</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 功能按钮 -->
+        <div class="flex border-b border-gray-200">
+            <button class="flex-1 py-3 flex flex-col items-center text-green-500">
+                <i class="fas fa-bookmark mb-1"></i>
+                <span class="text-xs">收藏</span>
+            </button>
+            <button class="flex-1 py-3 flex flex-col items-center text-gray-500">
+                <i class="fas fa-share-alt mb-1"></i>
+                <span class="text-xs">分享</span>
+            </button>
+            <button class="flex-1 py-3 flex flex-col items-center text-gray-500">
+                <i class="fas fa-plus-circle mb-1"></i>
+                <span class="text-xs">添加到计划</span>
+            </button>
+        </div>
+        
+        <!-- 营养成分 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <h2 class="font-bold mb-3">营养成分</h2>
+            <div class="grid grid-cols-4 gap-3">
+                <div class="text-center">
+                    <div class="rounded-full w-14 h-14 mx-auto bg-blue-100 flex items-center justify-center mb-1">
+                        <div class="text-blue-600 text-sm font-medium">28g</div>
+                    </div>
+                    <div class="text-xs text-gray-500">蛋白质</div>
+                </div>
+                <div class="text-center">
+                    <div class="rounded-full w-14 h-14 mx-auto bg-yellow-100 flex items-center justify-center mb-1">
+                        <div class="text-yellow-600 text-sm font-medium">32g</div>
+                    </div>
+                    <div class="text-xs text-gray-500">碳水</div>
+                </div>
+                <div class="text-center">
+                    <div class="rounded-full w-14 h-14 mx-auto bg-red-100 flex items-center justify-center mb-1">
+                        <div class="text-red-600 text-sm font-medium">12g</div>
+                    </div>
+                    <div class="text-xs text-gray-500">脂肪</div>
+                </div>
+                <div class="text-center">
+                    <div class="rounded-full w-14 h-14 mx-auto bg-green-100 flex items-center justify-center mb-1">
+                        <div class="text-green-600 text-sm font-medium">8g</div>
+                    </div>
+                    <div class="text-xs text-gray-500">纤维</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 食材清单 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <h2 class="font-bold mb-3">食材清单</h2>
+            
+            <div class="space-y-3">
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1604152135912-04a022e23696?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="鸡胸肉" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>鸡胸肉</span>
+                    </div>
+                    <span class="text-gray-500">150克</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="藜麦" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>藜麦</span>
+                    </div>
+                    <span class="text-gray-500">100克</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1556801712-76c8eb07bbc9?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="小番茄" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>小番茄</span>
+                    </div>
+                    <span class="text-gray-500">50克</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1579636849345-c40e15d42c6a?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="牛油果" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>牛油果</span>
+                    </div>
+                    <span class="text-gray-500">1/2个</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1558818498-28c1e002b655?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="混合生菜" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>混合生菜</span>
+                    </div>
+                    <span class="text-gray-500">50克</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1519304165269-6d1ddfc3c3e6?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="橄榄油" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>橄榄油</span>
+                    </div>
+                    <span class="text-gray-500">1汤匙</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1589466725882-f47a5a4b1fe0?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="柠檬汁" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>柠檬汁</span>
+                    </div>
+                    <span class="text-gray-500">1茶匙</span>
+                </div>
+                
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center">
+                        <img src="https://images.unsplash.com/photo-1590301157890-4810ed352733?ixlib=rb-1.2.1&auto=format&fit=crop&w=80&q=80" alt="盐和胡椒" class="w-10 h-10 rounded-lg object-cover mr-3">
+                        <span>盐和胡椒</span>
+                    </div>
+                    <span class="text-gray-500">适量</span>
+                </div>
+            </div>
+            
+            <div class="mt-4">
+                <button class="w-full py-2.5 border border-gray-300 rounded-lg text-sm text-gray-700 flex items-center justify-center">
+                    <i class="fas fa-shopping-cart mr-2"></i> 添加全部食材到购物清单
+                </button>
+            </div>
+        </div>
+        
+        <!-- 步骤说明 -->
+        <div class="p-4 bg-white">
+            <h2 class="font-bold mb-3">步骤说明</h2>
+            
+            <div class="space-y-5">
+                <div class="relative bg-gray-50 rounded-xl p-4 pl-5">
+                    <div class="step-number">1</div>
+                    <p>藜麦洗净，加入2倍的水煮沸后转小火煮15分钟，然后关火焖5分钟，待冷却备用。</p>
+                </div>
+                
+                <div class="relative bg-gray-50 rounded-xl p-4 pl-5">
+                    <div class="step-number">2</div>
+                    <p>鸡胸肉用盐、胡椒和橄榄油腌制10分钟，在中高火的平底锅上煎至两面金黄（约每面4-5分钟），确保完全煮熟。取出后静置2分钟再切片。</p>
+                </div>
+                
+                <div class="relative bg-gray-50 rounded-xl p-4 pl-5">
+                    <div class="step-number">3</div>
+                    <p>将小番茄切半，牛油果切成小块，混合生菜洗净沥干。</p>
+                </div>
+                
+                <div class="relative bg-gray-50 rounded-xl p-4 pl-5">
+                    <div class="step-number">4</div>
+                    <p>在碗中混合橄榄油、柠檬汁、盐和胡椒，制作简单的沙拉酱。</p>
+                </div>
+                
+                <div class="relative bg-gray-50 rounded-xl p-4 pl-5">
+                    <div class="step-number">5</div>
+                    <p>将冷却的藜麦、切片的鸡胸肉、小番茄、牛油果和生菜放入大碗中，倒入沙拉酱拌匀即可。</p>
+                </div>
+            </div>
+            
+            <!-- AI营养建议 -->
+            <div class="mt-6" id="ai-recipe-advice"></div>
+            
+            <div class="flex space-x-3 mt-6 mb-6">
+                <button class="flex-1 py-3 bg-green-500 text-white rounded-xl flex items-center justify-center">
+                    <i class="fas fa-utensils mr-2"></i>
+                    添加到今日餐食
+                </button>
+                <button class="w-14 h-14 bg-white border border-gray-300 rounded-full flex items-center justify-center">
+                    <i class="fas fa-bookmark text-xl text-green-500"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('食谱详情', true);
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('');
+            
+            // 插入AI建议
+            document.getElementById('ai-recipe-advice').innerHTML = createAiGradient('AI营养分析', '这道菜富含优质蛋白质和健康碳水化合物。藜麦提供复合碳水和高纤维，鸡胸肉提供瘦蛋白质，牛油果提供健康脂肪和维生素E。非常适合健身训练后或减脂期间的主食。');
+        });
+    </script>
+</body>
+</html> 

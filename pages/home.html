@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 主页</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        /* 首页特有的样式 */
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 问候语 -->
+        <div class="px-4 pt-2 pb-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-lg font-bold">嗨，小轻</h1>
+                    <p class="text-sm text-gray-500">今天是2025年4月9日 · 星期三</p>
+                </div>
+                <div class="w-12 h-12 rounded-full overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="用户头像" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 今日营养摄入概览 -->
+        <div class="p-4 bg-white rounded-t-3xl shadow-sm">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-bold">今日营养</h2>
+                <a href="reports.html" class="text-green-500 text-sm">查看详情</a>
+            </div>
+            
+            <!-- 卡路里进度条 -->
+            <div class="bg-gray-100 rounded-xl p-4 mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <div>
+                        <div class="text-sm font-medium">今日卡路里</div>
+                        <div><span class="text-xl font-bold">1,245</span> <span class="text-xs text-gray-500">/ 2,100 千卡</span></div>
+                    </div>
+                    <div class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">
+                        剩余 855 千卡
+                    </div>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-green-500 h-2.5 rounded-full" style="width: 59%"></div>
+                </div>
+            </div>
+            
+            <!-- 三大营养素进度 -->
+            <div class="flex justify-between mb-4">
+                <div id="protein-progress"></div>
+                <div id="carbs-progress"></div>
+                <div id="fat-progress"></div>
+            </div>
+            
+            <!-- 今日餐食记录 -->
+            <div class="mb-4">
+                <div class="flex justify-between items-center mb-2">
+                    <h3 class="font-medium">今日餐食</h3>
+                    <a href="food-record.html" class="text-green-500 text-xs">查看全部</a>
+                </div>
+                
+                <!-- 餐食卡片列表 -->
+                <div class="space-y-3">
+                    <!-- 早餐 -->
+                    <div class="bg-gray-50 rounded-xl p-3 flex items-center">
+                        <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-coffee text-yellow-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <div class="font-medium">早餐</div>
+                                <div class="text-sm text-gray-500">324 千卡</div>
+                            </div>
+                            <div class="text-xs text-gray-500">全麦面包, 煎蛋, 牛奶</div>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                    
+                    <!-- 午餐 -->
+                    <div class="bg-gray-50 rounded-xl p-3 flex items-center">
+                        <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-utensils text-red-500"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between">
+                                <div class="font-medium">午餐</div>
+                                <div class="text-sm text-gray-500">586 千卡</div>
+                            </div>
+                            <div class="text-xs text-gray-500">糙米饭, 清蒸鲈鱼, 西兰花</div>
+                        </div>
+                        <i class="fas fa-chevron-right text-gray-300"></i>
+                    </div>
+                    
+                    <!-- 加餐按钮 -->
+                    <a href="food-search.html" class="block text-center py-3 border border-dashed border-gray-300 rounded-xl text-gray-500">
+                        <i class="fas fa-plus mr-1"></i> 添加餐食
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI营养建议 -->
+            <div class="mb-4" id="ai-suggestion"></div>
+            
+            <!-- 饮水记录 -->
+            <div class="bg-blue-50 rounded-xl p-4 mb-4">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="font-medium flex items-center">
+                        <i class="fas fa-tint text-blue-500 mr-2"></i>
+                        饮水记录
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-bold">750</span>
+                        <span class="text-gray-500">/ 2000 ml</span>
+                    </div>
+                </div>
+                <div class="w-full bg-white rounded-full h-2.5 mb-2">
+                    <div class="bg-blue-500 h-2.5 rounded-full" style="width: 37.5%"></div>
+                </div>
+                <!-- 水杯图标 -->
+                <div class="flex justify-between mt-3">
+                    <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                        <i class="fas fa-glass-water text-blue-500"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                        <i class="fas fa-glass-water text-blue-500"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+                        <i class="fas fa-glass-water text-blue-500"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm opacity-40">
+                        <i class="fas fa-glass-water text-blue-300"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm opacity-40">
+                        <i class="fas fa-glass-water text-blue-300"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm opacity-40">
+                        <i class="fas fa-glass-water text-blue-300"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- 推荐食谱 -->
+            <div>
+                <div class="flex justify-between items-center mb-3">
+                    <h3 class="font-medium">健康食谱推荐</h3>
+                    <a href="#" class="text-green-500 text-xs">查看更多</a>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="recipe.html" id="recipe-card-1"></a>
+                    <a href="recipe.html" id="recipe-card-2"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('轻养营养助手', false, '<i class="fas fa-bell"></i>');
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('home');
+            
+            // 插入三大营养素进度
+            document.getElementById('protein-progress').innerHTML = createNutrientProgress('蛋白质', 75, 'text-blue-500', 'fas fa-drumstick-bite');
+            document.getElementById('carbs-progress').innerHTML = createNutrientProgress('碳水', 60, 'text-yellow-500', 'fas fa-bread-slice');
+            document.getElementById('fat-progress').innerHTML = createNutrientProgress('脂肪', 45, 'text-red-500', 'fas fa-cheese');
+            
+            // 插入AI营养建议
+            document.getElementById('ai-suggestion').innerHTML = createAiGradient('AI营养建议', '今天蛋白质摄入较充足，可以适当增加蔬菜水果的摄入。建议晚餐可以选择清淡的鱼类和绿叶蔬菜，减少精制碳水的摄入。');
+            
+            // 插入食谱卡片
+            document.getElementById('recipe-card-1').innerHTML = createFoodCard('地中海沙拉', '325', 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80', ['低脂', '高纤维']);
+            document.getElementById('recipe-card-2').innerHTML = createFoodCard('藜麦鸡胸沙拉', '420', 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80', ['高蛋白', '健康脂肪']);
+        });
+    </script>
+</body>
+</html> 

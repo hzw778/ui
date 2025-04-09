@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 登录</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .wave-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            border-radius: 0 0 30% 30%;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 背景波浪 -->
+    <div class="wave-bg"></div>
+    
+    <!-- 登录表单 -->
+    <div class="relative z-10 h-full flex flex-col items-center justify-center px-6">
+        <div class="w-full max-w-md">
+            <!-- Logo和标题 -->
+            <div class="text-center mb-10">
+                <div class="inline-block w-20 h-20 rounded-full bg-white shadow-lg p-5 mb-3">
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="轻养Logo" class="w-full rounded-full">
+                </div>
+                <h1 class="text-2xl font-bold text-white">轻养营养助手</h1>
+                <p class="text-green-100">简单养成健康生活习惯</p>
+            </div>
+            
+            <!-- 登录卡片 -->
+            <div class="bg-white rounded-xl shadow-xl p-6">
+                <!-- 切换标签 -->
+                <div class="flex mb-6 border-b border-gray-200">
+                    <button class="flex-1 py-2 font-medium text-green-500 border-b-2 border-green-500">登录</button>
+                    <button class="flex-1 py-2 font-medium text-gray-400">注册</button>
+                </div>
+                
+                <!-- 登录表单 -->
+                <div class="space-y-4">
+                    <div class="relative">
+                        <i class="fas fa-phone absolute left-3 top-3 text-gray-400"></i>
+                        <input type="tel" placeholder="手机号码" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-green-500">
+                    </div>
+                    
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-3 top-3 text-gray-400"></i>
+                        <input type="password" placeholder="密码" class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-green-500">
+                    </div>
+                    
+                    <div class="flex justify-between items-center text-sm">
+                        <label class="flex items-center">
+                            <input type="checkbox" class="mr-1 text-green-500 focus:ring-green-500 rounded">
+                            <span class="text-gray-600">记住我</span>
+                        </label>
+                        <a href="#" class="text-green-500">忘记密码？</a>
+                    </div>
+                    
+                    <a href="home.html" class="block w-full bg-green-500 text-white text-center py-3 rounded-lg font-medium hover:bg-green-600 transition">登录</a>
+                </div>
+                
+                <!-- 其他登录方式 -->
+                <div class="mt-6">
+                    <div class="relative flex items-center justify-center">
+                        <div class="h-px bg-gray-200 w-full"></div>
+                        <div class="absolute px-3 bg-white text-xs text-gray-400">其他登录方式</div>
+                    </div>
+                    
+                    <div class="flex justify-center space-x-4 mt-5">
+                        <button class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-weixin"></i>
+                        </button>
+                        <button class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center text-white">
+                            <i class="fas fa-mobile-alt"></i>
+                        </button>
+                        <button class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-apple"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 隐私政策链接 -->
+            <div class="text-center mt-6 text-xs text-gray-500">
+                登录即表示您同意 <a href="#" class="text-green-500">用户协议</a> 和 <a href="#" class="text-green-500">隐私政策</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+        });
+    </script>
+</body>
+</html> 

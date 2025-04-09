@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 营养报告</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        .time-selector {
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .time-selector::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        /* 图表样式 */
+        .chart-container {
+            width: 100%;
+            height: 200px;
+            position: relative;
+        }
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 24px;
+            border-radius: 6px 6px 0 0;
+            background-color: #4ade80;
+        }
+        .chart-bar-overlay {
+            position: absolute;
+            bottom: 0;
+            width: 24px;
+            border-radius: 6px 6px 0 0;
+            background-color: #e5e7eb;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 时间范围选择器 -->
+        <div class="time-selector p-4 bg-white border-b border-gray-200">
+            <div class="flex space-x-3">
+                <div class="px-3 py-1.5 bg-green-500 text-white text-sm rounded-full whitespace-nowrap">
+                    本周
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    本月
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    三个月
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    半年
+                </div>
+                <div class="px-3 py-1.5 bg-gray-100 text-gray-500 text-sm rounded-full whitespace-nowrap">
+                    一年
+                </div>
+            </div>
+        </div>
+        
+        <!-- 营养目标完成度 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <h2 class="font-bold mb-4">营养目标完成度</h2>
+            
+            <!-- 卡路里目标 -->
+            <div class="mb-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>每日卡路里</span>
+                    <span class="text-gray-500">平均 1,850 / 2,100 千卡</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-green-500 h-2.5 rounded-full" style="width: 88%"></div>
+                </div>
+            </div>
+            
+            <!-- 蛋白质目标 -->
+            <div class="mb-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>蛋白质</span>
+                    <span class="text-gray-500">平均 85 / 100 g</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-blue-500 h-2.5 rounded-full" style="width: 85%"></div>
+                </div>
+            </div>
+            
+            <!-- 碳水目标 -->
+            <div class="mb-4">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>碳水化合物</span>
+                    <span class="text-gray-500">平均 220 / 300 g</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 73%"></div>
+                </div>
+            </div>
+            
+            <!-- 脂肪目标 -->
+            <div class="mb-2">
+                <div class="flex justify-between text-sm mb-1">
+                    <span>脂肪</span>
+                    <span class="text-gray-500">平均 54 / 67 g</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-red-500 h-2.5 rounded-full" style="width: 80%"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 卡路里消耗图表 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-bold">卡路里摄入趋势</h2>
+                <div class="text-xs text-gray-500">4月3日 - 4月9日</div>
+            </div>
+            
+            <!-- 周卡路里柱状图 -->
+            <div class="chart-container mb-2">
+                <!-- 图表柱子 -->
+                <div class="chart-bar-overlay" style="height: 180px; left: 26px;"></div>
+                <div class="chart-bar" style="height: 135px; left: 26px;"></div>
+                
+                <div class="chart-bar-overlay" style="height: 180px; left: 74px;"></div>
+                <div class="chart-bar" style="height: 120px; left: 74px;"></div>
+                
+                <div class="chart-bar-overlay" style="height: 180px; left: 122px;"></div>
+                <div class="chart-bar" style="height: 155px; left: 122px;"></div>
+                
+                <div class="chart-bar-overlay" style="height: 180px; left: 170px;"></div>
+                <div class="chart-bar" style="height: 145px; left: 170px;"></div>
+                
+                <div class="chart-bar-overlay" style="height: 180px; left: 218px;"></div>
+                <div class="chart-bar" style="height: 160px; left: 218px;"></div>
+                
+                <div class="chart-bar-overlay" style="height: 180px; left: 266px;"></div>
+                <div class="chart-bar" style="height: 125px; left: 266px;"></div>
+                
+                <div class="chart-bar-overlay" style="height: 180px; left: 314px;"></div>
+                <div class="chart-bar" style="height: 140px; left: 314px;"></div>
+            </div>
+            
+            <!-- 图表日期标签 -->
+            <div class="flex justify-between text-xs text-gray-500 mb-2">
+                <div>周三</div>
+                <div>周四</div>
+                <div>周五</div>
+                <div>周六</div>
+                <div>周日</div>
+                <div>周一</div>
+                <div>今天</div>
+            </div>
+            
+            <!-- 平均数据 -->
+            <div class="flex justify-between px-3 py-2 bg-gray-50 rounded-lg text-sm">
+                <div>
+                    <div class="text-gray-500">周平均</div>
+                    <div class="font-medium">1,850 千卡</div>
+                </div>
+                <div>
+                    <div class="text-gray-500">目标差值</div>
+                    <div class="font-medium text-green-500">-250 千卡</div>
+                </div>
+                <div>
+                    <div class="text-gray-500">达标天数</div>
+                    <div class="font-medium">5/7 天</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 营养素摄入分析 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <h2 class="font-bold mb-4">营养素摄入分析</h2>
+            
+            <!-- 营养素摄入比例图 -->
+            <div class="flex justify-center mb-4">
+                <div class="relative w-44 h-44">
+                    <!-- 使用纯CSS制作营养素饼图 -->
+                    <div class="absolute inset-0 rounded-full overflow-hidden">
+                        <div class="absolute inset-0 bg-blue-500 rotate-0"></div>
+                        <div class="absolute inset-0 bg-yellow-500 rotate-[108deg]"></div>
+                        <div class="absolute inset-0 bg-red-500 rotate-[252deg]"></div>
+                        <div class="absolute inset-0 w-28 h-28 rounded-full bg-white m-auto"></div>
+                    </div>
+                    <!-- 中间文字 -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="text-xs text-gray-500">总热量</div>
+                            <div class="font-bold">1,850</div>
+                            <div class="text-xs text-gray-500">千卡</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 三大营养素列表 -->
+            <div class="space-y-3">
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-blue-500 mr-2"></div>
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <span class="text-sm">蛋白质</span>
+                            <span class="text-sm">85g (20%)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                            <div class="bg-blue-500 h-1.5 rounded-full" style="width: 20%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <span class="text-sm">碳水化合物</span>
+                            <span class="text-sm">220g (50%)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                            <div class="bg-yellow-500 h-1.5 rounded-full" style="width: 50%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center">
+                    <div class="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
+                    <div class="flex-1">
+                        <div class="flex justify-between">
+                            <span class="text-sm">脂肪</span>
+                            <span class="text-sm">54g (30%)</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                            <div class="bg-red-500 h-1.5 rounded-full" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- AI 营养建议 -->
+        <div class="p-4 bg-white">
+            <div id="ai-nutrition-advice"></div>
+            
+            <!-- 详细营养素分析按钮 -->
+            <div class="mt-4">
+                <button class="w-full py-3 border border-gray-300 rounded-xl text-gray-600 flex items-center justify-center">
+                    <i class="fas fa-chart-line mr-2"></i> 查看更多详细数据
+                </button>
+            </div>
+            
+            <!-- 生成营养报告按钮 -->
+            <div class="mt-3 mb-6">
+                <button class="w-full py-3 bg-green-500 text-white rounded-xl flex items-center justify-center">
+                    <i class="fas fa-file-medical-alt mr-2"></i> 生成营养报告
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('营养报告');
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('reports');
+            
+            // 插入AI营养建议
+            document.getElementById('ai-nutrition-advice').innerHTML = createAiGradient('AI营养分析', '您的碳水化合物摄入略低于建议值，可适当增加全谷物摄入。蛋白质摄入良好，继续保持。建议增加不饱和脂肪酸的摄入，如添加更多坚果、橄榄油等食物。');
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 个人资料</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        
+        
+        .profile-header {
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 个人资料头部 -->
+        <div class="profile-header py-6 px-4 text-white">
+            <div class="flex items-center">
+                <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80" alt="用户头像" class="w-full h-full object-cover">
+                </div>
+                <div class="ml-4">
+                    <h2 class="text-xl font-bold">小轻</h2>
+                    <p class="text-sm opacity-90">轻松养成健康生活</p>
+                    <div class="flex items-center mt-1">
+                        <div class="bg-white/20 rounded-full px-2 py-0.5 text-xs flex items-center mr-2">
+                            <i class="fas fa-medal mr-1"></i>
+                            <span>连续打卡 18 天</span>
+                        </div>
+                        <div class="bg-white/20 rounded-full px-2 py-0.5 text-xs flex items-center">
+                            <i class="fas fa-crown mr-1"></i>
+                            <span>减脂达人</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 健康数据 -->
+        <div class="bg-white p-4 border-b border-gray-200">
+            <h3 class="font-bold mb-3">我的健康数据</h3>
+            
+            <div class="grid grid-cols-3 gap-3 mb-4">
+                <!-- 身高体重 -->
+                <div class="bg-gray-50 rounded-xl p-3 text-center">
+                    <div class="text-xs text-gray-500 mb-1">身高</div>
+                    <div class="font-bold">168cm</div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-3 text-center">
+                    <div class="text-xs text-gray-500 mb-1">体重</div>
+                    <div class="font-bold">58kg</div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-3 text-center">
+                    <div class="text-xs text-gray-500 mb-1">BMI</div>
+                    <div class="font-bold">20.5</div>
+                </div>
+                
+                <!-- 健康状况 -->
+                <div class="bg-gray-50 rounded-xl p-3 text-center">
+                    <div class="text-xs text-gray-500 mb-1">体脂率</div>
+                    <div class="font-bold">22%</div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-3 text-center">
+                    <div class="text-xs text-gray-500 mb-1">基础代谢</div>
+                    <div class="font-bold">1380</div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-xl p-3 text-center">
+                    <div class="text-xs text-gray-500 mb-1">每日所需</div>
+                    <div class="font-bold">2100</div>
+                </div>
+            </div>
+            
+            <!-- 更新健康数据按钮 -->
+            <button class="w-full py-2.5 border border-gray-300 rounded-lg text-sm text-gray-700 flex items-center justify-center">
+                <i class="fas fa-edit mr-2"></i>
+                更新健康数据
+            </button>
+        </div>
+        
+        <!-- 我的目标 -->
+        <div class="bg-white p-4 border-b border-gray-200">
+            <div class="flex justify-between items-center mb-3">
+                <h3 class="font-bold">我的目标</h3>
+                <a href="goals.html" class="text-green-500 text-sm">编辑</a>
+            </div>
+            
+            <div class="bg-green-50 rounded-xl p-4 border border-green-100">
+                <div class="flex items-center mb-3">
+                    <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white mr-3">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div>
+                        <div class="font-bold">健康减脂</div>
+                        <div class="text-xs text-gray-500">目标体重：52kg · 还差 6kg</div>
+                    </div>
+                </div>
+                
+                <div class="space-y-3">
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span>每日摄入上限</span>
+                            <span class="text-gray-500">2,100 千卡</span>
+                        </div>
+                        <div class="w-full bg-white rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span>达标天数</span>
+                            <span class="text-gray-500">15/30 天</span>
+                        </div>
+                        <div class="w-full bg-white rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 50%"></div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between text-xs mb-1">
+                            <span>达成进度</span>
+                            <span class="text-gray-500">40%</span>
+                        </div>
+                        <div class="w-full bg-white rounded-full h-2">
+                            <div class="bg-green-500 h-2 rounded-full" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 功能菜单列表 -->
+        <div class="bg-white p-4 border-b border-gray-200">
+            <!-- 我的膳食计划 -->
+            <a href="meal-plan.html" class="flex items-center justify-between py-3">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-clipboard-list text-green-600"></i>
+                    </div>
+                    <span>我的膳食计划</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+            
+            <!-- 我的食谱收藏 -->
+            <a href="#" class="flex items-center justify-between py-3 border-t border-gray-100">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-bookmark text-yellow-600"></i>
+                    </div>
+                    <span>我的食谱收藏</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+            
+            <!-- 健康数据记录 -->
+            <a href="#" class="flex items-center justify-between py-3 border-t border-gray-100">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-chart-line text-blue-600"></i>
+                    </div>
+                    <span>健康数据记录</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+            
+            <!-- AI营养师服务 -->
+            <a href="ai-assistant.html" class="flex items-center justify-between py-3 border-t border-gray-100">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-robot text-purple-600"></i>
+                    </div>
+                    <span>AI营养师服务</span>
+                </div>
+                <div class="flex items-center">
+                    <div class="mr-2 px-2 py-0.5 bg-purple-100 text-purple-600 text-xs rounded-full">
+                        智能
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-300"></i>
+                </div>
+            </a>
+        </div>
+        
+        <!-- 系统设置 -->
+        <div class="bg-white p-4 mt-2">
+            <!-- 设置选项 -->
+            <a href="settings.html" class="flex items-center justify-between py-3">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-cog text-gray-600"></i>
+                    </div>
+                    <span>系统设置</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+            
+            <!-- 帮助与反馈 -->
+            <a href="#" class="flex items-center justify-between py-3 border-t border-gray-100">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-question-circle text-gray-600"></i>
+                    </div>
+                    <span>帮助与反馈</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+            
+            <!-- 关于我们 -->
+            <a href="#" class="flex items-center justify-between py-3 border-t border-gray-100">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                        <i class="fas fa-info-circle text-gray-600"></i>
+                    </div>
+                    <span>关于我们</span>
+                </div>
+                <i class="fas fa-chevron-right text-gray-300"></i>
+            </a>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('个人中心');
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('profile');
+        });
+    </script>
+</body>
+</html> 

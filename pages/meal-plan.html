@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 膳食计划</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        
+        
+        .day-selector {
+            overflow-x: auto;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        .day-selector::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 膳食计划信息 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <div class="flex items-center mb-3">
+                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center text-white mr-3">
+                    <i class="fas fa-utensils text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold">健康减脂计划</h1>
+                    <p class="text-sm text-gray-500">每日2100千卡 · 高蛋白低碳水饮食</p>
+                </div>
+            </div>
+            
+            <!-- 营养分配 -->
+            <div class="flex justify-between bg-gray-50 rounded-xl p-3 mb-3">
+                <div class="text-center">
+                    <div class="text-xs text-gray-500">蛋白质</div>
+                    <div class="font-bold">30%</div>
+                    <div class="text-xs text-gray-500">157g</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xs text-gray-500">碳水</div>
+                    <div class="font-bold">40%</div>
+                    <div class="text-xs text-gray-500">210g</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xs text-gray-500">脂肪</div>
+                    <div class="font-bold">30%</div>
+                    <div class="text-xs text-gray-500">70g</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xs text-gray-500">总热量</div>
+                    <div class="font-bold">2100</div>
+                    <div class="text-xs text-gray-500">千卡</div>
+                </div>
+            </div>
+            
+            <!-- 特点标签 -->
+            <div class="flex flex-wrap gap-2 mb-3">
+                <div class="px-3 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">
+                    高蛋白
+                </div>
+                <div class="px-3 py-1 bg-green-100 text-green-700 text-xs rounded-full">
+                    低碳水
+                </div>
+                <div class="px-3 py-1 bg-yellow-100 text-yellow-700 text-xs rounded-full">
+                    健康脂肪
+                </div>
+                <div class="px-3 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">
+                    高纤维
+                </div>
+                <div class="px-3 py-1 bg-red-100 text-red-700 text-xs rounded-full">
+                    控制热量
+                </div>
+            </div>
+            
+            <!-- AI建议提示 -->
+            <div id="ai-meal-advice"></div>
+        </div>
+        
+        <!-- 日期选择器 -->
+        <div class="day-selector py-2 px-4 bg-white border-b border-gray-200">
+            <div class="flex space-x-3">
+                <div class="date-item flex flex-col items-center justify-center w-14 h-16 rounded-xl bg-green-500 text-white">
+                    <div class="text-xs">周三</div>
+                    <div class="font-bold text-lg">9</div>
+                    <div class="text-xs">今天</div>
+                </div>
+                <div class="date-item flex flex-col items-center justify-center w-14 h-16 rounded-xl bg-gray-100">
+                    <div class="text-xs text-gray-500">周四</div>
+                    <div class="font-bold text-lg">10</div>
+                    <div class="text-xs text-gray-500">明天</div>
+                </div>
+                <div class="date-item flex flex-col items-center justify-center w-14 h-16 rounded-xl bg-gray-100">
+                    <div class="text-xs text-gray-500">周五</div>
+                    <div class="font-bold text-lg">11</div>
+                    <div class="text-xs text-gray-500">后天</div>
+                </div>
+                <div class="date-item flex flex-col items-center justify-center w-14 h-16 rounded-xl bg-gray-100">
+                    <div class="text-xs text-gray-500">周六</div>
+                    <div class="font-bold text-lg">12</div>
+                    <div class="text-xs text-gray-500">4月</div>
+                </div>
+                <div class="date-item flex flex-col items-center justify-center w-14 h-16 rounded-xl bg-gray-100">
+                    <div class="text-xs text-gray-500">周日</div>
+                    <div class="font-bold text-lg">13</div>
+                    <div class="text-xs text-gray-500">4月</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 膳食计划内容 -->
+        <div class="px-4 py-3">
+            <!-- 早餐 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center mr-2">
+                            <i class="fas fa-coffee text-yellow-500 text-sm"></i>
+                        </div>
+                        <h3 class="font-medium">早餐 <span class="text-sm text-gray-500">7:30</span></h3>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-medium">490</span>
+                        <span class="text-gray-500">千卡</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden">
+                    <div class="p-4 border-b border-gray-100">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1525351326368-efbb5cb6814d?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="全麦吐司" class="w-16 h-16 rounded-lg object-cover mr-3">
+                            <div class="flex-1">
+                                <div class="font-medium">全麦吐司配煎蛋</div>
+                                <div class="text-sm text-gray-500 mt-1">2片全麦吐司 + 2个鸡蛋 + 1/4个牛油果</div>
+                                <div class="flex space-x-3 mt-2">
+                                    <div class="text-xs text-gray-500">蛋白质 22g</div>
+                                    <div class="text-xs text-gray-500">碳水 40g</div>
+                                    <div class="text-xs text-gray-500">脂肪 20g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1589734575451-5c82e3e7ac68?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="希腊酸奶" class="w-16 h-16 rounded-lg object-cover mr-3">
+                            <div class="flex-1">
+                                <div class="font-medium">希腊酸奶配蓝莓</div>
+                                <div class="text-sm text-gray-500 mt-1">200g低脂希腊酸奶 + 100g蓝莓 + 10g坚果</div>
+                                <div class="flex space-x-3 mt-2">
+                                    <div class="text-xs text-gray-500">蛋白质 18g</div>
+                                    <div class="text-xs text-gray-500">碳水 25g</div>
+                                    <div class="text-xs text-gray-500">脂肪 8g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 午餐 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center mr-2">
+                            <i class="fas fa-utensils text-red-500 text-sm"></i>
+                        </div>
+                        <h3 class="font-medium">午餐 <span class="text-sm text-gray-500">12:30</span></h3>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-medium">680</span>
+                        <span class="text-gray-500">千卡</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden">
+                    <div class="p-4 border-b border-gray-100">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="烤鸡胸肉藜麦沙拉" class="w-16 h-16 rounded-lg object-cover mr-3">
+                            <div class="flex-1">
+                                <div class="font-medium">烤鸡胸肉藜麦沙拉</div>
+                                <div class="text-sm text-gray-500 mt-1">150g鸡胸肉 + 100g藜麦 + 混合蔬菜 + 橄榄油</div>
+                                <div class="flex space-x-3 mt-2">
+                                    <div class="text-xs text-gray-500">蛋白质 40g</div>
+                                    <div class="text-xs text-gray-500">碳水 45g</div>
+                                    <div class="text-xs text-gray-500">脂肪 15g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1528499908559-b8e3cbb3bb6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="水果" class="w-16 h-16 rounded-lg object-cover mr-3">
+                            <div class="flex-1">
+                                <div class="font-medium">时令水果</div>
+                                <div class="text-sm text-gray-500 mt-1">1个苹果或橙子</div>
+                                <div class="flex space-x-3 mt-2">
+                                    <div class="text-xs text-gray-500">蛋白质 1g</div>
+                                    <div class="text-xs text-gray-500">碳水 25g</div>
+                                    <div class="text-xs text-gray-500">脂肪 0g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 加餐 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center mr-2">
+                            <i class="fas fa-cookie text-purple-500 text-sm"></i>
+                        </div>
+                        <h3 class="font-medium">加餐 <span class="text-sm text-gray-500">15:30</span></h3>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-medium">230</span>
+                        <span class="text-gray-500">千卡</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden">
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="蛋白棒和香蕉" class="w-16 h-16 rounded-lg object-cover mr-3">
+                            <div class="flex-1">
+                                <div class="font-medium">蛋白棒和香蕉</div>
+                                <div class="text-sm text-gray-500 mt-1">1根低糖蛋白棒 + 1根香蕉</div>
+                                <div class="flex space-x-3 mt-2">
+                                    <div class="text-xs text-gray-500">蛋白质 15g</div>
+                                    <div class="text-xs text-gray-500">碳水 30g</div>
+                                    <div class="text-xs text-gray-500">脂肪 5g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 晚餐 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center">
+                        <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                            <i class="fas fa-moon text-blue-500 text-sm"></i>
+                        </div>
+                        <h3 class="font-medium">晚餐 <span class="text-sm text-gray-500">19:00</span></h3>
+                    </div>
+                    <div class="text-sm">
+                        <span class="font-medium">600</span>
+                        <span class="text-gray-500">千卡</span>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl overflow-hidden">
+                    <div class="p-4 border-b border-gray-100">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="烤三文鱼" class="w-16 h-16 rounded-lg object-cover mr-3">
+                            <div class="flex-1">
+                                <div class="font-medium">烤三文鱼配蒸蔬菜</div>
+                                <div class="text-sm text-gray-500 mt-1">180g三文鱼 + 蒸蔬菜拼盘 + 1勺橄榄油</div>
+                                <div class="flex space-x-3 mt-2">
+                                    <div class="text-xs text-gray-500">蛋白质 36g</div>
+                                    <div class="text-xs text-gray-500">碳水 15g</div>
+                                    <div class="text-xs text-gray-500">脂肪 25g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-start">
+                            <img src="https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80" alt="糙米饭" class="w-16 h-16 rounded-lg object-cover mr-3">
+                            <div class="flex-1">
+                                <div class="font-medium">少量糙米饭</div>
+                                <div class="text-sm text-gray-500 mt-1">100g煮熟的糙米饭</div>
+                                <div class="flex space-x-3 mt-2">
+                                    <div class="text-xs text-gray-500">蛋白质 3g</div>
+                                    <div class="text-xs text-gray-500">碳水 30g</div>
+                                    <div class="text-xs text-gray-500">脂肪 1g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 调整计划按钮 -->
+            <div class="mb-8">
+                <a href="ai-assistant.html" class="block w-full py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center rounded-xl flex items-center justify-center">
+                    <i class="fas fa-magic mr-2"></i>
+                    使用AI调整膳食计划
+                </a>
+                <button class="w-full py-3 border border-gray-300 rounded-xl mt-3 text-gray-600 flex items-center justify-center">
+                    <i class="fas fa-share-alt mr-2"></i>
+                    分享我的膳食计划
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('膳食计划', true);
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('');
+            
+            // 插入AI建议
+            document.getElementById('ai-meal-advice').innerHTML = createAiGradient('AI膳食分析', '根据你的减脂目标，此膳食计划提供适量高质量蛋白质保护肌肉，控制碳水为晚间代谢提供支持，并补充优质脂肪以维持荷尔蒙平衡。');
+        });
+    </script>
+</body>
+</html>

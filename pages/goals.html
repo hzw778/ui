@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻养营养助手 - 营养目标</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <style>
+        
+        
+        .custom-range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 5px;  
+            background: #e5e7eb;
+            outline: none;
+        }
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%; 
+            background: #22c55e;
+            cursor: pointer;
+        }
+        .custom-range::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #22c55e;
+            cursor: pointer;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div id="status-bar"></div>
+    
+    <!-- 页面标题栏 -->
+    <div id="app-header"></div>
+    
+    <!-- 主内容区域 -->
+    <div class="content">
+        <!-- 目标类型选择 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <h2 class="font-bold mb-3">我的目标</h2>
+            
+            <div class="flex flex-col space-y-2">
+                <div class="flex items-center p-3 bg-green-50 border border-green-200 rounded-xl">
+                    <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                        <div class="w-2 h-2 bg-white rounded-full"></div>
+                    </div>
+                    <div class="ml-3 flex-1">
+                        <div class="font-medium">健康减脂</div>
+                        <div class="text-xs text-gray-500">控制总热量摄入，增加蛋白质比例，减少脂肪摄入</div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-3 border border-gray-200 rounded-xl">
+                    <div class="w-5 h-5 border border-gray-300 rounded-full"></div>
+                    <div class="ml-3 flex-1">
+                        <div class="font-medium">增肌塑形</div>
+                        <div class="text-xs text-gray-500">增加总热量和蛋白质摄入，合理摄入碳水化合物</div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-3 border border-gray-200 rounded-xl">
+                    <div class="w-5 h-5 border border-gray-300 rounded-full"></div>
+                    <div class="ml-3 flex-1">
+                        <div class="font-medium">健康维持</div>
+                        <div class="text-xs text-gray-500">均衡饮食，保持当前体重和健康状态</div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center p-3 border border-gray-200 rounded-xl">
+                    <div class="w-5 h-5 border border-gray-300 rounded-full"></div>
+                    <div class="ml-3 flex-1">
+                        <div class="font-medium">自定义目标</div>
+                        <div class="text-xs text-gray-500">根据个人需求定制营养目标</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 目标详情设置 -->
+        <div class="p-4 bg-white border-b border-gray-200">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-bold">目标详情</h2>
+                <a href="#" class="text-green-500 text-sm">AI优化</a>
+            </div>
+            
+            <!-- 目标体重设置 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="font-medium">目标体重</div>
+                    <div class="flex items-center">
+                        <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-minus text-gray-500 text-xs"></i>
+                        </button>
+                        <span class="mx-3 font-bold">52<span class="text-sm font-normal">kg</span></span>
+                        <button class="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-plus text-gray-500 text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="text-xs text-gray-500 mb-2">当前体重: 58kg · 目标减重: 6kg</div>
+                
+                <div class="relative mb-2">
+                    <input type="range" min="45" max="70" value="52" class="custom-range">
+                    <div class="flex justify-between text-xs text-gray-400 mt-1">
+                        <span>45kg</span>
+                        <span>70kg</span>
+                    </div>
+                </div>
+                
+                <div class="bg-green-50 rounded-lg p-2 text-xs text-green-700 flex items-start">
+                    <i class="fas fa-info-circle mt-0.5 mr-1"></i>
+                    <div>根据您的身高(168cm)，健康BMI范围为18.5-24.9，对应体重范围为52-70kg</div>
+                </div>
+            </div>
+            
+            <!-- 卡路里目标设置 -->
+            <div class="mb-5">
+                <div class="flex justify-between items-center mb-2">
+                    <div class="font-medium">每日热量目标</div>
+                    <div class="text-gray-500 font-medium">2,100 千卡</div>
+                </div>
+                
+                <div class="relative mb-2">
+                    <input type="range" min="1600" max="2600" value="2100" class="custom-range">
+                    <div class="flex justify-between text-xs text-gray-400 mt-1">
+                        <span>减脂 1600千卡</span>
+                        <span>增肌 2600千卡</span>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between text-xs text-gray-500">
+                    <div>基础代谢率: 1,380千卡</div>
+                    <div>活动消耗: 720千卡</div>
+                </div>
+            </div>
+            
+            <!-- 营养素占比设置 -->
+            <div>
+                <div class="font-medium mb-3">营养素占比</div>
+                
+                <!-- 蛋白质 -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <div class="text-sm">蛋白质</div>
+                        <div class="flex items-center">
+                            <span class="text-sm font-medium">30%</span>
+                            <span class="text-xs text-gray-500 ml-1">(157g)</span>
+                        </div>
+                    </div>
+                    <input type="range" min="15" max="40" value="30" class="custom-range" style="background: linear-gradient(to right, #3b82f6 0%, #3b82f6 30%, #e5e7eb 30%, #e5e7eb 100%)">
+                </div>
+                
+                <!-- 碳水化合物 -->
+                <div class="mb-4">
+                    <div class="flex justify-between items-center mb-1">
+                        <div class="text-sm">碳水化合物</div>
+                        <div class="flex items-center">
+                            <span class="text-sm font-medium">40%</span>
+                            <span class="text-xs text-gray-500 ml-1">(210g)</span>
+                        </div>
+                    </div>
+                    <input type="range" min="30" max="60" value="40" class="custom-range" style="background: linear-gradient(to right, #f59e0b 0%, #f59e0b 40%, #e5e7eb 40%, #e5e7eb 100%)">
+                </div>
+                
+                <!-- 脂肪 -->
+                <div>
+                    <div class="flex justify-between items-center mb-1">
+                        <div class="text-sm">脂肪</div>
+                        <div class="flex items-center">
+                            <span class="text-sm font-medium">30%</span>
+                            <span class="text-xs text-gray-500 ml-1">(70g)</span>
+                        </div>
+                    </div>
+                    <input type="range" min="15" max="40" value="30" class="custom-range" style="background: linear-gradient(to right, #ef4444 0%, #ef4444 30%, #e5e7eb 30%, #e5e7eb 100%)">
+                </div>
+            </div>
+        </div>
+        
+        <!-- 营养素详细设置 -->
+        <div class="p-4 bg-white">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="font-bold">营养素详细设置</h2>
+                <div class="text-green-500 text-sm">展开 <i class="fas fa-chevron-down ml-1"></i></div>
+            </div>
+            
+            <!-- AI营养建议 -->
+            <div class="mt-3 mb-5" id="ai-goal-advice"></div>
+            
+            <!-- 保存按钮 -->
+            <div class="flex space-x-3 mt-6 mb-6">
+                <button class="flex-1 py-3 bg-white border border-gray-300 rounded-xl text-gray-700">
+                    重置
+                </button>
+                <button class="flex-1 py-3 bg-green-500 text-white rounded-xl">
+                    保存目标
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div id="nav-bar"></div>
+    
+    <script src="../js/components.js"></script>
+    <script>
+        // 页面初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            // 插入iOS状态栏
+            document.getElementById('status-bar').innerHTML = createStatusBar();
+            
+            // 插入应用标题栏
+            document.getElementById('app-header').innerHTML = createAppHeader('营养目标', true);
+            
+            // 插入底部导航栏
+            document.getElementById('nav-bar').innerHTML = createNavBar('');
+            
+            // 插入AI建议
+            document.getElementById('ai-goal-advice').innerHTML = createAiGradient('AI目标建议', '基于您的健康数据和减脂目标，建议将蛋白质提高至30%以促进新陈代谢和肌肉维护。每周减重目标控制在0.5kg以内更健康可持续。');
+        });
+    </script>
+</body>
+</html>
